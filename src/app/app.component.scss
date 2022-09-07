@@ -1,0 +1,158 @@
+$black: #27282F;
+$content: #cdced6;
+
+.container {
+    background: $black;
+    min-height: 100vh;    
+}
+
+.logo {
+    text-align: center;
+    
+
+    &-obj {
+        height: 48px;
+        width: 48px;
+        margin-top: 32px;
+    }
+}
+
+.camera {
+    position: relative;
+    height: 400px;
+    margin-top: 48px;
+
+    &-editor {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translate(-10%, -50%);
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+
+        &-item {
+            margin: 12px;
+
+            &-icon {
+                height: 24px;
+                width: 24px;
+            }
+        }
+
+        &-variants {
+            position: absolute;
+            background: white;
+            display: flex;
+            padding: 8px;
+            border-radius: 12px;
+            top: 5%;
+            left: 6px;
+            transform: translate(0, -5%);
+
+            &-item {
+                white-space: nowrap;
+                margin: auto 8px;
+            }
+        }
+    }
+}
+
+.camera_frame {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 3px solid white;
+    border-radius: 8px;
+    padding: 8px
+}
+
+.camera_frame::before {
+    content: "";
+    left: 40px;
+    right: 40px;
+    top: -3px;
+    height: 100%;
+    position: absolute;
+    border: 3px solid $black;
+    z-index: -1;
+}
+
+.camera_frame::after {
+    content: "";
+    left: -3px;
+    top: 40px;
+    bottom: 40px;
+    width: 100%;
+    position: absolute;
+    border: 3px solid $black;
+    z-index: -1;
+}
+
+#video {
+    width: 100%;
+    height: 350px;
+    background-color: $black;
+    border-radius: 8px;
+}
+
+#canvas {
+    display: none;
+}
+
+.btns {
+
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid $content;
+    border-bottom: 1px solid $content;
+    padding: 8px;
+
+    &-btn {
+        display: block;
+        color: white;
+        text-align: center;
+        margin: auto;
+
+        &-icon {
+            height: 30px;
+            width: 30px;
+            margin-top: 8px;
+        }
+
+        &-text {
+            color: #EAEBF0;
+            font-size: 14px;
+            line-height: 0px;
+        }
+    }
+
+    &-btn:first-child {
+        border-right: 1px solid $content;
+        padding-right: 10%;
+    }
+}
+
+.capture_btn {
+    position: relative;
+    height: 72px;
+    width: 72px;
+    background: #00A9E2;
+    border-radius: 50%;
+    margin: 50px auto;
+}
+
+.capture_btn::before {
+    content: "";
+    height: 52px;
+    width: 52px;
+    position: absolute;
+    border: 2px solid white;
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}

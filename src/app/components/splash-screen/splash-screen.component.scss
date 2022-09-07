@@ -1,0 +1,33 @@
+:host {
+  min-height: 100vh;
+  background: white;
+}
+
+.container {
+  margin: auto 16px auto 16px;
+  text-align: center;
+}
+
+.text {
+  text-align: center;
+}
+
+.btn_wrapper {
+  height: 150px;
+}
+
+.btn {
+  height: 48px;
+  width: 100%;
+  color: white;
+  background: #27282F;
+  border: 1px solid #27282F;
+  border-radius: 16px;
+  margin-top: 75px;
+  font-size: 16px;
+}
+
+.btn:active {
+  background: #cdced6;
+  border: 1px solid #cdced6;
+}
