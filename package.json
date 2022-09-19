@@ -18,9 +18,12 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@camera-processor/virtual-background": "^0.9.11",
+    "camera-processor": "^0.9.5",
     "lottie-web": "^5.9.6",
     "ngx-lottie": "^9.0.1",
     "rxjs": "~7.5.0",
+    "tflite-helper": "^0.9.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

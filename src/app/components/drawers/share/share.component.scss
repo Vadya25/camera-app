@@ -1,0 +1,122 @@
+.backdrop {
+    background: rgba(39, 40, 47, 0.5);
+    height: 100%;
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.container {
+    height: 1540px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    background: white;
+    position: relative;
+    padding: 16px;
+}
+
+.header {
+    margin: 62px auto 62px auto;
+}
+
+.lottie {
+    height: 38vh;
+    margin: -7vh auto;
+}
+
+.btns {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 70px 16px 0px 16px;
+
+    &-wrapper {
+        width: 49%;
+    }
+
+}
+
+.share {
+
+    text-align: center;
+
+    &-image {
+
+        text-align: center;
+        position: relative;
+        z-index: 1;
+
+        &-obj {
+            height: 718px;
+            width: 718px;
+            border-radius: 16px;
+        }
+    }
+
+    &-image:before {
+        content: "";
+        transform: rotate(7.27deg);
+        background: #00A9E2;
+        height: 718px;
+        width: 718px;
+        border-radius: 16px;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+
+    &-data {
+
+        margin: 32px 16px 16px 16px;
+        height: 550px;
+        overflow: hidden;
+        transition: height 1s;
+
+        &-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: auto;
+        }
+
+        input {
+            background: #EAEBF0;
+            border-radius: 40px;
+            border: none;
+            width: 713px;
+            height: 130px;
+            padding-left: 32px;
+        }
+    }
+}
+
+.keyboard {
+    height: 0;
+    background-color: grey;
+}
+
+.loading {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(39, 40, 47, 0.5);
+
+    &-content {
+        position: absolute;
+        margin: auto;
+        color: white;
+        font-size: 5rem;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+  
+  

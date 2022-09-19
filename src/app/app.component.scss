@@ -1,100 +1,126 @@
-$black: #27282F;
-$content: #cdced6;
-
-.container {
-    background: $black;
-    min-height: 100vh;    
+.wrapper {
+    background: var(--main-dark);
+    min-height: 100vh;
 }
 
 .logo {
-    text-align: center;
-    
+
+    height: 170px;
+    position: relative;
 
     &-obj {
-        height: 48px;
-        width: 48px;
-        margin-top: 32px;
+        position: absolute;
+        height: 120px;
+        width: 120px;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 }
 
 .camera {
     position: relative;
-    height: 400px;
-    margin-top: 48px;
+    margin: auto auto 40px auto;
+    height: calc((var(--camera-size) + 44) * var(--pixel-converter));
+    width: calc((var(--camera-size) + 44) * var(--pixel-converter));
 
-    &-editor {
-        display: block;
+    &-content {
+        position: relative;
+        border: 6px solid #EAEBF0;
+        border-radius: 40px;
+        padding: 22px;
+        z-index: 1;
+
+        &-grid {
+            height: 100%;
+            width: 100%;
+        }
+
+        &-grid:before {
+            content: "";
+            height: 35%;
+            width: 95%;
+            position: absolute;
+            z-index: 0;
+            border-top: 1px solid #EAEBF0;
+            border-bottom: 1px solid #EAEBF0;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        &-grid:after {
+            content: "";
+            height: 95%;
+            width: 35%;
+            position: absolute;
+            z-index: 0;
+            border-left: 1px solid #EAEBF0;
+            border-right: 1px solid #EAEBF0;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        &-image {
+            border-radius: 40px;
+            object-fit: cover; 
+        }
+    }
+
+    &-content:before {
+        content: "";
+        left: 120px;
+        right: 120px;
+        top: -8px;
+        height: 99.6%;
+        position: absolute;
+        border-top: 10px solid var(--main-dark);
+        border-bottom: 10px solid var(--main-dark);
+        z-index: -1;
+    }
+
+    &-content:after {
+        content: "";
+        left: -7px;
+        top: 120px;
+        bottom: 120px;
+        width: 99.7%;
+        position: absolute;
+        border-left: 8px solid #27282f;
+        border-right: 9px solid #27282f;
+        z-index: -1;
+    }
+
+    &-image {
         position: absolute;
         top: 50%;
-        left: 10%;
-        transform: translate(-10%, -50%);
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 16px;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 1;       
+    }
 
-        &-item {
-            margin: 12px;
-
-            &-icon {
-                height: 24px;
-                width: 24px;
-            }
-        }
-
-        &-variants {
-            position: absolute;
-            background: white;
-            display: flex;
-            padding: 8px;
-            border-radius: 12px;
-            top: 5%;
-            left: 6px;
-            transform: translate(0, -5%);
-
-            &-item {
-                white-space: nowrap;
-                margin: auto 8px;
-            }
-        }
+    &-counter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 100%;
+        height: 100%;
     }
 }
 
-.camera_frame {
-    width: 90%;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border: 3px solid white;
-    border-radius: 8px;
-    padding: 8px
-}
-
-.camera_frame::before {
-    content: "";
-    left: 40px;
-    right: 40px;
-    top: -3px;
-    height: 100%;
-    position: absolute;
-    border: 3px solid $black;
-    z-index: -1;
-}
-
-.camera_frame::after {
-    content: "";
-    left: -3px;
-    top: 40px;
-    bottom: 40px;
-    width: 100%;
-    position: absolute;
-    border: 3px solid $black;
-    z-index: -1;
-}
-
 #video {
-    width: 100%;
-    height: 350px;
-    background-color: $black;
-    border-radius: 8px;
+    background-color: var(--main-dark);
+    border-radius: 40px;
+    object-fit: cover;
 }
 
 #canvas {
@@ -105,54 +131,39 @@ $content: #cdced6;
 
     display: flex;
     justify-content: space-around;
-    border-top: 1px solid $content;
-    border-bottom: 1px solid $content;
-    padding: 8px;
-
-    &-btn {
-        display: block;
-        color: white;
-        text-align: center;
-        margin: auto;
-
-        &-icon {
-            height: 30px;
-            width: 30px;
-            margin-top: 8px;
-        }
-
-        &-text {
-            color: #EAEBF0;
-            font-size: 14px;
-            line-height: 0px;
-        }
-    }
-
-    &-btn:first-child {
-        border-right: 1px solid $content;
-        padding-right: 10%;
-    }
-}
-
-.capture_btn {
+    align-items: center;
     position: relative;
-    height: 72px;
-    width: 72px;
-    background: #00A9E2;
-    border-radius: 50%;
-    margin: 50px auto;
-}
+    height: 250px;
 
-.capture_btn::before {
-    content: "";
-    height: 52px;
-    width: 52px;
-    position: absolute;
-    border: 2px solid white;
-    border-radius: 50%;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    &-wrapper {
+        width: 44%;
+        text-align: center;
+    }
+
+    &-capture {
+        position: relative;
+        height: 180px;
+        width: 180px;
+        background: #00A9E2;
+        border-radius: 50%;
+        border: none;
+    }
+
+    &-capture:active {
+        background-color: #EAEBF0;
+    }
+    
+    &-capture::before {
+        content: "";
+        height: 150px;
+        width: 150px;
+        position: absolute;
+        border: 2px solid white;
+        border-radius: 50%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
 }

@@ -1,0 +1,55 @@
+<div class="wrapper">
+    <section @leftRightAnimation *ngIf="!showBackgroundsOpts && !showEffectsOpts && !showFilterOpts" class="items">
+        <div (click)="deleteAllOptions()" class="items-item">
+            <img class="items-item-icon" [src]="'/assets/icons/none.svg'">
+            <p class="note note-light">None</p>
+        </div>
+
+        <div (click)="showBackgroundsOpts=true" class="items-item">
+            <img class="items-item-icon" [src]="'/assets/icons/background.svg'">
+            <p class="note note-medium">Background</p>
+        </div>
+
+        <div (click)="showEffectsOpts=true" class="items-item">
+            <img class="items-item-icon" [src]="'/assets/icons/templates.svg'">
+            <p class="note note-medium">Templates</p>
+        </div>
+
+        <div (click)="showFilterOpts=true" class="items-item">
+            <img class="items-item-icon" [src]="'/assets/icons/filter.svg'">
+            <p class="note note-medium">Filter</p>
+        </div>
+    </section>
+    
+    <section @rightLeftAnimation *ngIf="showBackgroundsOpts || showEffectsOpts || showFilterOpts" class="templates">
+
+        <div class="templates-header">
+            <img (click)="goBack()" class="templates-header-back_button" [src]="'/assets/icons/back.svg'">
+            <p class="subtitle templates-header-text"> {{ showBackgroundsOpts ? 'Backgrounds' : showEffectsOpts ? 'Templates' : 'Filters' }} </p>
+        </div>
+
+        <div *ngIf="showBackgroundsOpts" class="templates-items">
+            <div *ngFor="let item of backgrounds, let i=index" (click)="selectBackground(i)">
+                <img [ngClass]="{'templates-items-item_selected': selectedBackgroundIndex === i && i !== 0}" class="templates-items-item" 
+                [src]="item">
+            </div>
+        </div>
+
+        <div *ngIf="showEffectsOpts" class="templates-items">
+            <div *ngFor="let item of effects, let i=index" (click)="selectImageEffect(i)">
+                <img class="templates-items-item templates-items-item_background" 
+                [ngClass]="{'templates-items-item_selected': selectedEffectIndex === i && i !== 0}" [src]="item">
+            </div>
+        </div>
+
+        <div *ngIf="showFilterOpts" class="templates-items">
+            <div *ngFor="let item of effects, let i=index" (click)="selectImageFilter(i)">
+                <img class="templates-items-item" 
+                [style.filter]="filters[i]" 
+                [ngClass]="{'templates-items-item_selected': selectedEffectIndex === i && i !== 0}" 
+                [src]=" i === 0 ? '/assets/icons/none.svg' : filterBackgroundImgSrc">
+            </div>
+        </div>
+
+    </section>
+</div>

@@ -1,0 +1,60 @@
+<div (click)="hideDrawer()" class="backdrop"></div>
+
+<div class="wrapper">
+
+    <section #container class="container">
+
+        <div class="header text_center">
+            <p class="title">
+                Send by Email
+            </p>
+        </div>
+
+        <div class="share-image">
+            <img class="share-image-obj" [src]="image">
+        </div>
+
+        <form (ngSubmit)="sendImage()" #userDataForm="ngForm" class="share-data">
+
+            <div class="share-data-group">
+                <label class="subtitle" for="email">To:</label>
+                <input (focus)="showKeyboard()" (focusout)="hideKeyboard()" type="text" class="subtitle" id="email"
+                    email placeholder="Email" [(ngModel)]="userData.email" name="email" required />
+            </div>
+
+            <div class="share-data-group">
+                <label class="subtitle" for="subject">Subject:</label>
+                <input type="text" [(ngModel)]="userData.subject" name="subject" class="subtitle" id="subject"
+                    placeholder="Subject" required />
+            </div>
+
+            <div #buttons class="btns">
+
+                <div class="btns-wrapper">
+                    <button type="submit" class="btns-btn btn btn_dark">
+                        <p class="subtitle">Send</p>
+                    </button>
+                </div>
+
+                <div class="btns-wrapper">
+                    <button type="button" class="btns-btn btn btn_light" (click)="hideDrawer()">
+                        <p class="subtitle"> Cancel </p>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </section>
+
+    <section>
+        <div #keyboard class="keyboard"></div>
+    </section>
+
+</div>
+
+<div *ngIf="isImageSending" class="loading">
+    <p class="loading-content"> Sending... </p>
+</div>
+
+<app-bottom @flyInOut *ngIf="showInputDataError" [isShareDataError]="showInputDataError"
+    (drawerAction)="hideErrorDrawer()" class="splash_screen"></app-bottom>

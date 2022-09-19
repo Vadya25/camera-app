@@ -1,0 +1,29 @@
+<div (click)="hideDrawer(false)" class="backdrop"></div>
+<div class="wrapper">
+    <section class="container">
+        <div class="header text_center">
+            <p class="title">
+                {{ isImgDeleting ? 'Are you sure, you want to delete?' : 'Error' }} 
+            </p>
+        </div>
+
+        <div class="lottie">
+            <ng-lottie #lottie [options]="options">
+            </ng-lottie>
+        </div>
+
+        <div class="text_center">
+            <p class="subtitle"> {{ isImgDeleting ? 'After clicking the button your photo will be delete forever' : 'Something went wrong with Email sending' }} </p>
+        </div>
+
+        <div class="btns">
+            <div *ngIf="isImgDeleting" class="btns-wrapper">
+                <button (click)="hideDrawer(true)" class="btns-btn btn btn_dark"> <p class="subtitle"> Yes, I'm sure </p></button>
+            </div>
+
+            <div class="btns-wrapper">
+                <button class="btns-btn btn btn_light" (click)="hideDrawer(false)"> <p class="subtitle">Cancel</p></button>
+            </div>
+        </div>
+    </section>
+</div>

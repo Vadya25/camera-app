@@ -1,21 +1,32 @@
-<div style="height: 60vh" class="lottie-animation mt-10">
-    <ng-lottie [options]="options">
-    </ng-lottie>
-</div>
-
-<div class="container" style="text-align: center">
-    <div class="text">
-        <h1> Hey! </h1>
-
-        <p> Thank you for opportunity to complete this test task.
-            Have a great day =))
-        </p>
-
+<div #slider class="slider">
+    <div class="slider-lottie">
+        <ng-lottie [options]="lottieOptions">
+        </ng-lottie>
     </div>
 
-    <div class="btn_wrapper">
-        <button (click)="start()" class="btn">
-            Start
+    <div>
+        <p class="title title-dark text_center"> {{ shareResult === null ? 'Hey!' : shareResult ? 'Image send successful' : 'The send failed' }}  </p>
+        <p class="subtitle subtitle-dark text_center"> Thank you for opportunity to complete this test task. Have a great day =)) </p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div #pagination *ngIf="shareResult === null" class="pagination">
+        <div *ngFor="let f of lottiesId; let i=index">
+            <hr [ngClass]="{'pagination-item_selected': i === currentLottieIndex, 'pagination-item_default': i !== currentLottieIndex }"
+                class="pagination-item">
+        </div>
+    </div>
+
+    <div class="btns text_center">
+        <button *ngIf="shareResult === null" (click)="navigateToCameraScreen()" class="btn btn_dark">
+            <span class="subtitle">Start</span>
+        </button>
+
+        <button *ngIf="shareResult !== null" (click)="navigateToCameraScreen()" class="btn btn_light btn_icon">
+            <img class="btn-icon" src="/assets/icons/camera.svg">
+            <span class="subtitle">Another selfie</span>
         </button>
     </div>
 </div>

@@ -1,66 +1,80 @@
-<ng-container *ngIf="splashShow; else showCamera">
-    <app-splash-screen *ngIf="splashShow" (hideSplash)="splashAction()"></app-splash-screen>
-</ng-container>
+<!-- first screen -->
+<app-splash-screen *ngIf="splashStartShow" (hideSplash)="hideSplash()" class="splash_screen"></app-splash-screen>
 
-<ng-template #showCamera>
-    <div class="container">
-        <div class="logo">
-            <img class="logo-obj" [src]="'/assets/images/logo.png'">
-        </div>
+<!-- main screen -->
+<div class="wrapper">
 
-        <div class="camera">
-            <div class="camera_frame">
-                <div (click)="cameraEditor = null" class="camera-content">
-                    <section>
-                        <video #video id="video" autoplay></video>
-                        <canvas #canvas id="canvas" width="640" height="480"></canvas>
-                    </section>
-                </div>
-
-                <div class="camera-editor">
-                    <div class="camera-editor-item">
-                        <img (click)="showCameraEditor('time')" class="camera-editor-item-icon" [src]="'/assets/images/circletime.png'">
-                        <div (click)="cameraEditor = null" *ngIf="cameraEditor === 'time' " class="camera-editor-variants">
-                            <img class="camera-editor-item-icon" [src]="'/assets/images/circlecolor_time.png'">
-                            <div class="camera-editor-variants-item"> Time Off </div>
-                            <div (click)="setCaptureTimeout(3)" class="camera-editor-variants-item"> 3 sec </div>
-                            <div (click)="setCaptureTimeout(5)" class="camera-editor-variants-item"> 5 sec </div>
-                        </div>
-                    </div>
-                    <div class="camera-editor-item">
-                        <img class="camera-editor-item-icon" [src]="'/assets/images/crop.png'">
-                    </div>
-                    <div class="camera-editor-item">
-                        <img class="camera-editor-item-icon" [src]="'/assets/images/frames.png'">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="btns">
-            <div class="btns-btn">
-                <img *ngIf="!image" class="btns-btn-icon" [src]="'/assets/images/none.png'">
-                <img *ngIf="image" class="btns-btn-icon" [src]="image">
-                <p class="btns-btn-text">Current</p>
-            </div>
-
-            <div class="btns-btn">
-                <img class="btns-btn-icon" [src]="'/assets/images/background.png'">
-                <p class="btns-btn-text">Background</p>
-            </div>
-
-            <div class="btns-btn">
-                <img class="btns-btn-icon" [src]="'/assets/images/templates.png'">
-                <p class="btns-btn-text">Templates</p>
-            </div>
-
-            <div class="btns-btn">
-                <img class="btns-btn-icon" [src]="'/assets/images/filter.png'">
-                <p class="btns-btn-text">Filter</p>
-            </div>
-        </div>
-
-        <div (click)="capture()" class="capture_btn">
-        </div>
+    <div class="logo">
+        <img class="logo-obj" [src]="'/assets/images/logo.svg'">
     </div>
-</ng-template>
+
+    <div #camera class="camera">
+        <div [ngStyle]=" {'visibility': image ? 'hidden' : 'visible' } " class="camera-content">
+
+            <section [style.filter]=" videoFilter !== '' ? videoFilter : 'none' ">
+                <div class="camera-content-grid"></div>
+                <video #video id="video" autoplay [height]="cameraSize" [width]="cameraSize"></video>
+                <canvas #canvas id="canvas" [height]="cameraSize" [width]="cameraSize"></canvas>
+            </section>
+
+        </div>
+
+        <!-- Captured iamge -->
+        <div [ngStyle]=" {'visibility': image ? 'visible' : 'hidden' } " class="camera-image">
+            <img class="camera-content-image" [src]="image">
+        </div>
+
+        <!-- Effect image -->
+        <div class="camera-image" [ngStyle]=" {'visibility': effectImage !== '' && !image ? 'visible' : 'hidden' } "
+            [style.filter]=" videoFilter !== '' ? videoFilter : 'none' ">
+            <img class="camera-content-image" [src]="effectImage">
+        </div>
+
+        <!-- Seconds animation -->
+        <div class="camera-counter">
+            <ng-lottie [options]="lottieOptions">
+            </ng-lottie>
+        </div>
+
+    </div>
+
+    <app-effects  [ngStyle]=" {'display': image ? 'none' : 'block' } " (selectVirtualBackground)="setVirtualBackground($event)"
+        (selectEffect)="setVideoEffect($event)" (selectFilter)="setVideoFilter($event)"
+        (deleteAllChanges)="deleteAllChanges()"></app-effects>
+
+    <div class="btns">
+
+        <div *ngIf="image" class="btns-wrapper">
+            <button (click)="shareEmailShow=true" class="btn btn_light_border btn_icon">
+                <img class="btns-icon" src="/assets/icons/share.svg">
+                <span class="subtitle">Share</span>
+            </button>
+        </div>
+
+        <div *ngIf="!image" class="btns-wrapper">
+            <button (click)="captureImage()" class="btns-capture btns-btn">
+            </button>
+        </div>
+
+        <div *ngIf="image" class="btns-wrapper">
+            <button (click)="deleteApproverShow=true" class="btn btn_light_border btn_icon">
+                <img class="btns-icon" src="/assets/icons/delete.svg">
+                <span class="subtitle">Delete</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- share via email screen -->
+<app-share class="splash_screen" @flyInOut *ngIf="shareEmailShow" [image]="image" (drawerAction)="hideShare($event)">
+</app-share>
+
+<!-- deleting image screen and sending error screen -->
+<app-bottom class="splash_screen" @flyInOut *ngIf="deleteApproverShow" [isImgDeleting]="true"
+    (drawerAction)="hideBottomDrawer($event)"></app-bottom>
+
+<!-- final screen, aboot sent to email -->
+<app-splash-screen *ngIf="splashResultShow" [shareResult]="shareResult" (hideSplash)="hideSplash()"
+    class="splash_screen">
+</app-splash-screen>

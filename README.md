@@ -1,3 +1,6 @@
+# CustomSettings
+For configuration use `congig.ts` in `/src/app/`. To correctly display and capture photo from camera, set `CAMERA_DEVICE_SIZE`
+
 # CameraApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
