@@ -1,5 +1,5 @@
 # CustomSettings
-For configuration use `congig.ts` in `/src/app/`. To correctly display and capture photo from camera, set `CAMERA_DEVICE_SIZE`
+For configuration use `config.ts` in `/src/app/`. To correctly display and capture photo from camera, set `CAMERA_DEVICE_SIZE` in `config.ts`
 
 # CameraApp
 
